@@ -6,7 +6,7 @@ import platform
 # (1)==================== COMMON CONFIGURATION OPTIONS ======================= #
 COMPILER="clang++ -std=c++17"   # The compiler we want to use 
                                 #(You may try g++ if you have trouble)
-SOURCE="./src/*.cpp"    # Where the source code lives
+SOURCE="./src/*.cpp ./external/GLAD/glad/*.c"    # Where the source code lives
 EXECUTABLE="./build/minecpp"        # Name of the final executable
 # ======================= COMMON CONFIGURATION OPTIONS ======================= #
 
@@ -18,16 +18,16 @@ LIBRARIES=""            # What libraries do we want to include
 
 if platform.system()=="Linux":
     ARGUMENTS="-D LINUX" # -D is a #define sent to preprocessor
-    INCLUDE_DIR="-I ./include/ -I ./../common/thirdparty/glm/"
+    INCLUDE_DIR="-I./external/GLAD/ -I ./../common/thirdparty/glm/"
     LIBRARIES="-lSDL2 -ldl"
 elif platform.system()=="Darwin":
     ARGUMENTS="-D MAC" # -D is a #define sent to the preprocessor.
-    INCLUDE_DIR="-I ./include/ -I/Library/Frameworks/SDL2.framework/Headers -I./../common/thirdparty/old/glm"
+    INCLUDE_DIR="-I./external/GLAD -I/Library/Frameworks/SDL2.framework/Headers"
     LIBRARIES="-F/Library/Frameworks -framework SDL2"
 elif platform.system()=="Windows":
     COMPILER="g++ -std=c++17" # Note we use g++ here as it is more likely what you have
     ARGUMENTS="-D MINGW -std=c++17 -static-libgcc -static-libstdc++" 
-    INCLUDE_DIR="-I./include/ -I./../common/thirdparty/old/glm/"
+    INCLUDE_DIR="-I./external/GLAD/ -I./../common/thirdparty/old/glm/"
     EXECUTABLE="./build/minecpp.exe"
     LIBRARIES="-lmingw32 -lSDL2main -lSDL2 -mwindows"
 # (2)=================== Platform specific configuration ===================== #

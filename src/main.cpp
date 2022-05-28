@@ -1,5 +1,6 @@
 #include "stdexcept"
 #include "iostream"
+
 #include "application.h"
 
 // Welcome to minecpp!
