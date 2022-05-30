@@ -1,7 +1,7 @@
 #include "stdexcept"
 #include "iostream"
 
-#include "application.h"
+#include "Application.h"
 
 // Welcome to minecpp!
 int main(int argc, char** argv) {

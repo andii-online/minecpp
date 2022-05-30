@@ -18,8 +18,12 @@ class Application {
       // Runs the main game loop.
       void loop();
    private:
+      // Renders the screen
+      void render();
       SDL_Window* m_window;
-      SDL_GLContext m_openGLContext; 
+      SDL_GLContext m_openGLContext;
+      GLint m_screenWidth = 720;
+      GLint m_screenHeight = 480;
 };
 
 #endif // APPLICATION_H

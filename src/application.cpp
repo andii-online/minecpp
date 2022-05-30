@@ -1,7 +1,9 @@
-#include "application.h"
+#include "Application.h"
 
 #include "stdexcept"
 #include "string"
+
+#include "WorldGen/Block.h"
 
 Application::Application() {
    // Initialize SDL
@@ -21,8 +23,8 @@ Application::Application() {
    m_window = SDL_CreateWindow("minecpp", 
       SDL_WINDOWPOS_CENTERED, 
       SDL_WINDOWPOS_CENTERED, 
-      720, 
-      480, 
+      m_screenWidth, 
+      m_screenHeight, 
       SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
    // If window failed to instantiate, error
@@ -52,9 +54,17 @@ Application::~Application() {
    SDL_Quit();
 }
 
+void Application::render() {
+   glViewport(0,0, m_screenWidth, m_screenHeight);
+   glClearColor(0,0,0,0); 
+   glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+}
+
 void Application::loop() {
    bool quit = false;
    SDL_Event e;
+
+   Block block();
 
    while(!quit) {
       while(SDL_PollEvent(&e) != 0) {
@@ -62,6 +72,8 @@ void Application::loop() {
             quit = true;
          }
       }
+
+      render();
 
       SDL_GL_SwapWindow(m_window);
    }

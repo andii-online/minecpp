@@ -6,7 +6,7 @@ import platform
 # (1)==================== COMMON CONFIGURATION OPTIONS ======================= #
 COMPILER="clang++ -std=c++17"   # The compiler we want to use 
                                 #(You may try g++ if you have trouble)
-SOURCE="./src/*.cpp ./external/GLAD/glad/*.c"    # Where the source code lives
+SOURCE="./src/*.cpp ./src/**/*.cpp ./external/GLAD/**/*.c"    # Where the source code lives
 EXECUTABLE="./build/minecpp"        # Name of the final executable
 # ======================= COMMON CONFIGURATION OPTIONS ======================= #
 
